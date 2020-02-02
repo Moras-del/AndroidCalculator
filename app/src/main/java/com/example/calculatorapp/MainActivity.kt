@@ -19,30 +19,23 @@ import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
+import org.w3c.dom.Text
 import java.io.Serializable
 import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
-    var buttonCompute: Button? = null
-    var buttonChart: Button? = null
-    var resultTextView: TextView? = null
-    var functionEditText: EditText? = null
-    var varEditText: EditText? = null
-    var varTextView: TextView? = null
-    var rangeEditText: EditText? = null
-    var expression: Expression? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main)
-        buttonCompute =     findViewById(R.id.button)
-        buttonChart =       findViewById(R.id.makeChartButton)
-        resultTextView =    findViewById(R.id.resultTextView)
-        rangeEditText =     findViewById(R.id.rangeEditText)
-        functionEditText =  findViewById(R.id.functionEditText)
-        varEditText =       findViewById(R.id.varEditText)
-        varTextView =       findViewById(R.id.varTextView)
+        val buttonCompute: Button       = findViewById(R.id.button)
+        val buttonChart: Button         =       findViewById(R.id.makeChartButton)
+        val resultTextView: TextView    =    findViewById(R.id.resultTextView)
+        val rangeEditText: EditText     =     findViewById(R.id.rangeEditText)
+        val functionEditText: EditText  =  findViewById(R.id.functionEditText)
+        val varEditText: EditText       =       findViewById(R.id.varEditText)
 
         val v:Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
@@ -53,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                                                 .toLowerCase()
                                                 .split(",")
                                                 .toTypedArray() //utwórz zmienne do równania
-                if (function.equals("") || variable.get(0).equals("")) { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
+                if (function == "" || variable[0] == "") { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                     } else {
@@ -61,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     if (function.equals("")) {
                         functionEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
-                    } else if (variable.get(0).equals("")) {
+                    } else if (variable[0] == "") {
                         varEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
                     }
                 } else {
@@ -70,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                         for (n in variable) {
                             e.variable(n[0].toString())
                         }
-                        expression = e.build()
+                        val expression = e.build()
                         for (n in variable) {
                             expression!!.setVariable(n[0].toString(), n.substring(2).toDouble())
                         }
@@ -92,15 +85,15 @@ class MainActivity : AppCompatActivity() {
         buttonChart!!.setOnClickListener(){
             val function: String = functionEditText?.text.toString()
             val range: String = rangeEditText?.text.toString()
-            if (function.equals("") || range.equals("")) { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
+            if (function == "" || range == "") { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else {
                     v.vibrate(500);
                 }
-                if (function.equals("")) {
+                if (function == "") {
                     functionEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
-                } else if (range.equals("")) {
+                } else if (range == "") {
                     rangeEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
                 }
             } else {

@@ -1,115 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:ems="10"
             android:id="@+id/functionEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:ems="10"
             android:hint="Podaj funkcję."
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="55dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="311dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="259dp" android:layout_marginEnd="259dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:inputType="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-            android:text="Oblicz!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/button"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="253dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="110dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="134dp" android:layout_marginEnd="509dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text="Podaj wartości twoich zmiennych."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Oblicz!"
+            app:layout_constraintEnd_toStartOf="@+id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/varEditText" />
+
+    <TextView
             android:id="@+id/varTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="141dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="251dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="71dp" android:layout_marginEnd="443dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Podaj wartości twoich zmiennych."
+            app:layout_constraintEnd_toStartOf="@+id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
     <EditText
-            android:layout_width="119dp"
-            android:layout_height="44dp"
-            android:ems="10"
             android:id="@+id/varEditText"
-            android:hint="x=2,y=5"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="187dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="180dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="117dp" android:layout_marginEnd="495dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text="Wynik:"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/resultTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="317dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="75dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="156dp" android:layout_marginEnd="534dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text='Stwórz wykres (tylko "x" jako zmienna).'
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/infoTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="141dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="251dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="427dp" android:layout_marginEnd="58dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <Button
-            android:text="Wykres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/makeChartButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="253dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="110dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="504dp" android:layout_marginEnd="139dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <EditText
-            android:layout_width="120dp"
-            android:layout_height="41dp"
-            android:inputType="number"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
+            android:hint="x=2,y=5"
+            app:layout_constraintEnd_toStartOf="@+id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/varTextView" />
+
+    <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Wynik:"
+            app:layout_constraintEnd_toStartOf="@+id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text='Stwórz wykres (tylko "x" jako zmienna).'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+    <Button
+            android:id="@+id/makeChartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Wykres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/rangeEditText" />
+
+    <EditText
             android:id="@+id/rangeEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
             android:hint="Długość osi X"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="190dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="485dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="180dp" android:layout_marginEnd="126dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <View
-            android:id="@+id/divider3"
-            android:layout_width="5dp"
-            android:layout_height="204dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="135dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="72dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="363dp" android:layout_marginEnd="363dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
+
     <View
             android:id="@+id/divider5"
-            android:layout_width="670dp"
-            android:layout_height="5dp"
+            android:layout_width="619dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/colorAccent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="112dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="294dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="30dp" android:layout_marginEnd="31dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/functionEditText" />
+
+    <View
+            android:id="@+id/divider3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="335dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="335dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

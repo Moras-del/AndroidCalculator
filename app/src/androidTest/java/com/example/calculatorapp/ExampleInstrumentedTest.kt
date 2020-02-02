@@ -38,6 +38,5 @@ class ExampleInstrumentedTest {
         onView(withId(R.id.varEditText)).perform(typeText(variable), closeSoftKeyboard())
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.resultTextView)).check(matches(withText("Wynik: 9.00")))
-
     }
 }
