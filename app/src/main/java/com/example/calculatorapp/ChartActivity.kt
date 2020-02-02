@@ -38,17 +38,19 @@ import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
 
 
 class ChartActivity : AppCompatActivity() {
-    var chartView: AnyChartView? = null
-    var expression: Expression? = null
-    var rangeSeekbar: CrystalRangeSeekbar? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_chart)
         val function = intent.getStringExtra("FUNCTION").toString()
-        val range: Int = intent.getStringExtra("RANGE").toInt()
-        chartView = findViewById(R.id.any_chart_view)
-        rangeSeekbar = findViewById(R.id.rangeSeekBar)
+        val range = intent.getStringExtra("RANGE").toInt()
+
+        val chartView: AnyChartView? = findViewById(R.id.any_chart_view)
+        val rangeSeekbar: CrystalRangeSeekbar? = findViewById(R.id.rangeSeekBar)
+
+        var expression: Expression? = null
 
         try {
             expression = ExpressionBuilder(function)
@@ -59,10 +61,9 @@ class ChartActivity : AppCompatActivity() {
             this@ChartActivity.onBackPressed()
         }
 
-        val LineChart: Cartesian = AnyChart.line()
-        var chartRange: MutableList<DataEntry> = ArrayList()
-        var index = 0
-        for (i in -range.toDouble()..range.toDouble() step 0.01) {
+        val lineChart: Cartesian = AnyChart.line()
+        val chartRange: MutableList<DataEntry> = ArrayList()
+        for ((index, i) in (-range.toDouble()..range.toDouble() step 0.01).withIndex()) {
             chartRange.add(
                 index,
                 ValueDataEntry(
@@ -70,18 +71,17 @@ class ChartActivity : AppCompatActivity() {
                     expression?.setVariable("x", i)?.evaluate()
                 )
             )
-            index++
         }
-        LineChart.data(chartRange)
-        LineChart.animation(true)
-        LineChart.lineMarker(true)
-        LineChart.yGrid(true)
-        LineChart.tooltip().titleFormat("function () { return \"X = \" + this.x.toString()}")
-        LineChart.tooltip().format( "function() { return \"Y = \" + parseFloat(this.value).toFixed(2).toString();}")
-        chartView?.setChart(LineChart)
+        lineChart.data(chartRange)
+        lineChart.animation(true)
+        lineChart.lineMarker(true)
+        lineChart.yGrid(true)
+        lineChart.tooltip().titleFormat("function () { return \"X = \" + this.x.toString()}")
+        lineChart.tooltip().format( "function() { return \"Y = \" + parseFloat(this.value).toFixed(2).toString();}")
+        chartView?.setChart(lineChart)
         rangeSeekbar?.setOnRangeSeekbarChangeListener { minValue: Number, maxValue: Number ->
-            if (rangeSeekbar?.isPressed == false) {
-                LineChart.xZoom().setTo(minValue, maxValue)
+            if (!rangeSeekbar.isPressed) {
+                lineChart.xZoom().setTo(minValue, maxValue)
             }
         }
     }

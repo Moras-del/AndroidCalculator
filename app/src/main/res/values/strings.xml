@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CalculatorApp</string>
     <string name="podaj_fun">Podaj funkcję.</string>
+    <string name="podaj_zmienne">Podaj wartości twoich zmiennych.</string>
+    <string name="oblicz">Oblicz!</string>
+    <string name="vars_hint">x=2, y=3</string>
 </resources>
