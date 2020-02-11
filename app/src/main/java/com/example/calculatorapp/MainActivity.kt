@@ -3,25 +3,16 @@ package com.example.calculatorapp
 import android.content.Context
 import android.content.Intent
 import android.os.*
-import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
-import android.view.View
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.anychart.AnyChart
-import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.charts.Cartesian
-import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
-import org.w3c.dom.Text
-import java.io.Serializable
 import java.math.RoundingMode
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main)
-        val buttonCompute: Button       = findViewById(R.id.button)
+        val buttonCompute: Button       = findViewById(R.id.resultbutton)
         val buttonChart: Button         =       findViewById(R.id.makeChartButton)
         val resultTextView: TextView    =    findViewById(R.id.resultTextView)
         val rangeEditText: EditText     =     findViewById(R.id.rangeEditText)
@@ -39,9 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         val v:Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        buttonCompute!!.setOnClickListener(){
-                val function: String = functionEditText?.text.toString().toLowerCase()
-                val variable = varEditText?.text.toString()
+        buttonCompute.setOnClickListener {
+                val function: String = functionEditText.text.toString()
+                val variable = varEditText.text.toString()
                                                 .replace(" ","")
                                                 .toLowerCase()
                                                 .split(",")
@@ -52,10 +43,10 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         v.vibrate(500);
                     }
-                    if (function.equals("")) {
-                        functionEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
+                    if (function == "") {
+                        functionEditText.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
                     } else if (variable[0] == "") {
-                        varEditText?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
+                        varEditText.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake))
                     }
                 } else {
                     try {
@@ -68,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                             expression!!.setVariable(n[0].toString(), n.substring(2).toDouble())
                         }
                         val result: Double = expression!!.evaluate()
-                        resultTextView?.text = "Wynik: " + result.toBigDecimal().setScale(
+                        resultTextView.text = "Wynik: " + result.toBigDecimal().setScale(
                             2,
                             RoundingMode.HALF_EVEN
                         ).toString()
@@ -98,8 +89,8 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 val intent = Intent(this@MainActivity, ChartActivity::class.java) //INTENT DO WYKRESU
-                intent.putExtra("FUNCTION", function)
-                intent.putExtra("RANGE", range)
+                intent.putExtra(getString(R.string.function_name), function)
+                intent.putExtra(getString(R.string.range_name), range)
                 startActivity(intent)
             }
         }
