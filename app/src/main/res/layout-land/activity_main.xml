@@ -4,118 +4,142 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context="pl.moras.equationmaker.MainActivity">
 
-    <EditText
-            android:id="@+id/functionEditText"
-            android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/functionTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="128dp"
             android:ems="10"
-            android:hint="Podaj funkcję."
-            android:inputType="none"
+            android:fontFamily="serif"
+            android:hint="@string/fun_hint"
+            android:inputType="none|text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/functionText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
             android:id="@+id/resultbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Oblicz!"
+            android:text="@string/compute"
             app:layout_constraintEnd_toStartOf="@+id/divider3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/varEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/varLayout" />
 
     <TextView
             android:id="@+id/varTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Podaj wartości twoich zmiennych."
+            android:layout_marginTop="16dp"
+            android:fontFamily="serif"
+            android:includeFontPadding="false"
+            android:text="@string/vars_text"
             app:layout_constraintEnd_toStartOf="@+id/divider3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+            app:layout_constraintTop_toBottomOf="@+id/functionTextLayout" />
 
-    <EditText
-            android:id="@+id/varEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/varLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
-            android:hint="x=2,y=5"
+            android:fontFamily="serif"
+            android:hint="@string/vars_hint"
             app:layout_constraintEnd_toStartOf="@+id/divider3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/varTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/varTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/varText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
             android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Wynik:"
+            android:fontFamily="serif"
+            android:text="@string/function_result"
             app:layout_constraintEnd_toStartOf="@+id/divider3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resultbutton" />
 
     <TextView
             android:id="@+id/infoTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text='Stwórz wykres (tylko "x" jako zmienna).'
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="serif"
+            android:text="@string/make_chart_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider3"
-            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+            app:layout_constraintTop_toBottomOf="@+id/functionTextLayout" />
 
     <Button
-            android:id="@+id/makeChartButton"
+            android:id="@+id/chartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Wykres"
+            android:text="@string/chart_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider3"
-            app:layout_constraintTop_toBottomOf="@+id/rangeEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/rangeLayout" />
 
-    <EditText
-            android:id="@+id/rangeEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rangeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
-            android:hint="Długość osi X"
+            android:fontFamily="serif"
+            android:hint="@string/range_hint"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider3"
-            app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/infoTextView">
 
-    <View
-            android:id="@+id/divider5"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/functionEditText" />
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rangeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <View
             android:id="@+id/divider3"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="0dp"
-            android:layout_marginStart="335dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="335dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="96dp"
             android:background="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+            app:layout_constraintTop_toBottomOf="@+id/functionTextLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
