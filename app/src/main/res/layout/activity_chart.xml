@@ -6,33 +6,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ChartActivity">
-    <com.anychart.AnyChartView
-            android:id="@+id/any_chart_view"
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chartView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="32dp">
-    </com.anychart.AnyChartView>
-
-    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
-            android:id="@+id/rangeSeekBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:data_type="_float"
-            app:gap="0.05"
-            app:layout_constraintBottom_toTopOf="@+id/any_chart_view"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:left_thumb_color="#2196F3"
-            app:left_thumb_color_pressed="#47528F"
-            app:max_value="1"
-            app:min_value="0"
-            app:right_thumb_color="#2196F3"
-            app:right_thumb_color_pressed="#47528F"
-            app:steps="0.01" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
