@@ -41,8 +41,6 @@ dependencies {
 
     implementation files('libs/exp4j-0.4.8.jar')
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.crystal:crystalrangeseekbar:1.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
     implementation "org.jetbrains.anko:anko:0.10.8"
 
 }
