@@ -63,7 +63,7 @@ class ChartActivity : AppCompatActivity() {
         return LineData(LineDataSet(entryList, function))
     }
 
-    infix fun ClosedRange<Double>.step(step: Double): Iterable<Double> {
+    private infix fun ClosedRange<Double>.step(step: Double): Iterable<Double> {
         require(start.isFinite())
         require(endInclusive.isFinite())
         require(step > 0.0) { "Step must be positive, was: $step." }

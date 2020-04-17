@@ -2,10 +2,12 @@ package pl.moras.equationmaker
 
 import android.content.Context
 import android.os.*
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import com.google.android.gms.ads.*
 import pl.moras.equationmaker.R
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
@@ -15,11 +17,20 @@ import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var intersitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this)
+        intersitialAd = InterstitialAd(this).apply {
+            adUnitId = getString(R.string.ad_intersitial_id)
+            loadAd(AdRequest.Builder().build())
+            adListener = adListener()
+        }
+        adView.loadAd(AdRequest.Builder().build())
+
         resultTextView.text = getString(R.string.function_result, 0f)
         resultbutton.onClick {
             val function: String = functionText.text.toString()
@@ -39,6 +50,9 @@ class MainActivity : AppCompatActivity() {
             val range: String = rangeText.text.toString()
 
             if(validateChart(function, range)){
+                if (intersitialAd.isLoaded) {
+                    intersitialAd.show()
+                }
                 startActivity<ChartActivity>(
                     getString(R.string.pl_moras_mainactivity_function) to function,
                     getString(R.string.pl_moras_mainactivity_range) to range
@@ -48,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //utwórz zmienne do równania
-    private fun getVariables(vars: EditText): Array<String> {
+    fun getVariables(vars: EditText): Array<String> {
         return vars.text.toString()
             .replace(" ","")
             .toLowerCase()
@@ -56,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             .toTypedArray()
     }
 
-    private fun compute(function: String, variables: Array<String>): Double {
+    fun compute(function: String, variables: Array<String>): Double {
         val e = ExpressionBuilder(function)
         for (n in variables) {
             e.variable(n[0].toString())
@@ -121,6 +135,12 @@ class MainActivity : AppCompatActivity() {
             v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             v.vibrate(500);
+        }
+    }
+
+    private fun adListener() =object: AdListener(){
+        override fun onAdClosed() {
+            intersitialAd.loadAd(AdRequest.Builder().build())
         }
     }
 

@@ -14,4 +14,7 @@
     <string name="make_chart_text">Stwórz wykres (użyj \"x\" jako zmiennej w funkcji)</string>
     <string name="range_hint">Długość osi X</string>
     <string name="chart_button">Wykres</string>
+    <string name="app_id">APP_ID</string>
+    <string name="ad_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_intersitial_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
