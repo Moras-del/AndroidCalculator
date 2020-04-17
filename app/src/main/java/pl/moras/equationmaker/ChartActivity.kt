@@ -1,38 +1,25 @@
-package com.example.calculatorapp
+package pl.moras.equationmaker
 
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 
 
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
-import java.math.RoundingMode
 
 import android.view.*
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 
 import kotlinx.android.synthetic.main.activity_chart.*
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.suspendAtomicCancellableCoroutine
-import net.objecthunter.exp4j.function.Function
-import net.objecthunter.exp4j.function.Functions
-import org.jetbrains.anko.custom.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
-import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.toast
-import java.util.concurrent.Executors
-import kotlin.coroutines.suspendCoroutine
 
 
 class ChartActivity : AppCompatActivity() {
@@ -54,9 +41,16 @@ class ChartActivity : AppCompatActivity() {
             this@ChartActivity.onBackPressed()
         }
         with(chartView) {
+            axisLeft.textColor = Color.WHITE
+            axisRight.textColor = Color.WHITE
+            xAxis.textColor = Color.WHITE
+            legend.textColor=Color.WHITE
             description.isEnabled = false
             data = getChartData(expression!!, range.toDouble(), function)
-            marker = MyMarker(this@ChartActivity, R.layout.marker_layout)
+            marker = MyMarker(
+                this@ChartActivity,
+                R.layout.marker_layout
+            )
             setPinchZoom(true)
         }
     }

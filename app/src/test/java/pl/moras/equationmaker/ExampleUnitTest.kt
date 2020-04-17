@@ -1,9 +1,8 @@
-package com.example.calculatorapp
+package pl.moras.equationmaker
 
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.junit.runner.RunWith
 
 /**
  * Example local unit test, which will execute on the development machine (host).

@@ -1,4 +1,4 @@
-package com.example.calculatorapp
+package pl.moras.equationmaker
 
 import android.content.Context
 import android.os.*
@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import pl.moras.equationmaker.R
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main)
-
+        resultTextView.text = getString(R.string.function_result, 0f)
         resultbutton.onClick {
             val function: String = functionText.text.toString()
             val variables = getVariables(varText)
