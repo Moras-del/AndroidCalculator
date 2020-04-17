@@ -6,146 +6,150 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <EditText
-            android:id="@+id/functionEditText"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/functionTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
             android:layout_marginTop="90dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
             android:ems="10"
             android:fontFamily="serif"
-            android:hint="@string/podaj_fun"
+            android:hint="@string/fun_hint"
             android:inputType="none|text"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.949" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/functionText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
             android:id="@+id/resultbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="283dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="400dp"
-            android:text="@string/oblicz"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/varEditText"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="64dp"
+            android:text="@string/compute"
+            app:layout_constraintBaseline_toBaselineOf="@+id/varLayout"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
             android:id="@+id/varTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
             android:fontFamily="serif"
             android:includeFontPadding="false"
-            android:text="@string/podaj_zmienne"
-            app:layout_constraintBottom_toTopOf="@+id/varEditText"
+            android:text="@string/vars_text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-    <EditText
-            android:id="@+id/varEditText"
-            android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/varLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
             android:ems="10"
             android:fontFamily="serif"
             android:hint="@string/vars_hint"
-            app:layout_constraintBaseline_toBaselineOf="@+id/resultbutton"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/resultbutton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/varTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/varText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
             android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:fontFamily="serif"
-            android:text="Wynik:"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
+            android:text="@string/function_result"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/varEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/varLayout" />
 
     <View
             android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="282dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="17dp"
             android:background="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/varTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/functionEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/functionTextLayout" />
 
     <View
             android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="75dp"
+            android:layout_width="283dp"
+            android:layout_height="13dp"
+            android:layout_marginTop="16dp"
             android:background="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/rangeEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/varEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/resultTextView" />
 
     <TextView
             android:id="@+id/infoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="serif"
-            android:text='Stwórz wykres (tylko "x" jako zmienna).'
-            app:layout_constraintBottom_toTopOf="@+id/rangeEditText"
+            android:text="@string/make_chart_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <Button
-            android:id="@+id/makeChartButton"
+            android:id="@+id/chartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Wykres"
+            android:text="@string/chart_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rangeEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/rangeLayout" />
 
-    <EditText
-            android:id="@+id/rangeEditText"
-            android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rangeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="96dp"
             android:layout_marginBottom="163dp"
             android:ems="10"
             android:fontFamily="serif"
-            android:hint="Długość osi X"
+            android:hint="@string/range_hint"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rangeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
