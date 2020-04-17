@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EquationMaker</string>
+    <string name="fun_hint">Podaj funkcję (n.p. sin(x) )</string>
+    <string name="vars_text">Podaj wartości zmiennych</string>
+    <string name="compute">Oblicz!</string>
+    <string name="vars_hint">np. x=2</string>
+    <string name="pl_moras_mainactivity_function">pl.moras.mainactivity.FUNCTION</string>
+    <string name="pl_moras_mainactivity_range">pl.moras.mainactivity.RANGE</string>
+    <string name="function_error">Błąd. Sprawdź poprawność funkcji i zmiennych</string>
+    <string name="function_result">Wynik: %.2f</string>
+    <string name="marker_x_value">X = %f</string>
+    <string name="marker_y_value">Y = %f</string>
+    <string name="make_chart_text">Stwórz wykres (użyj \"x\" jako zmiennej w funkcji)</string>
+    <string name="range_hint">Długość osi X</string>
+    <string name="chart_button">Wykres</string>
+</resources>

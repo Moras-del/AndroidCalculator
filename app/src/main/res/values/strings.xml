@@ -1,9 +1,16 @@
 <resources>
-    <string name="app_name">CalculatorApp</string>
-    <string name="podaj_fun">Podaj funkcję.</string>
-    <string name="podaj_zmienne">Podaj wartości twoich zmiennych.</string>
-    <string name="oblicz">Oblicz!</string>
-    <string name="vars_hint">x=2, y=3</string>
-    <string name="function_name">FUNCTION</string>
-    <string name="range_name">RANGE</string>
+    <string name="app_name">EquationMaker</string>
+    <string name="fun_hint">Enter function (e.g sin(x) )</string>
+    <string name="vars_text">Enter values of variables</string>
+    <string name="compute">Compute!</string>
+    <string name="vars_hint">e.g. x=2</string>
+    <string name="pl_moras_mainactivity_function">pl.moras.mainactivity.FUNCTION</string>
+    <string name="pl_moras_mainactivity_range">pl.moras.mainactivity.RANGE</string>
+    <string name="function_error">Error. Check the correctness of function and variables</string>
+    <string name="function_result">Result: %.2f</string>
+    <string name="marker_x_value">X = %f</string>
+    <string name="marker_y_value">Y = %f</string>
+    <string name="make_chart_text">Make chart (use \"x\" as variable in function)</string>
+    <string name="range_hint">Length of X axis</string>
+    <string name="chart_button">Chart</string>
 </resources>
