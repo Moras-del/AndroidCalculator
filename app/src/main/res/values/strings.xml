@@ -13,7 +13,28 @@
     <string name="make_chart_text">Make chart (use \"x\" as variable in function)</string>
     <string name="range_hint">Length of X axis</string>
     <string name="chart_button">Chart</string>
+    <string name="functions_help_title">Builtin functions </string>
+    <string name="ok">OK</string>
     <string name="app_id">APP_ID</string>
     <string name="ad_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ad_intersitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string-array name="functions_help">
+        <item>abs: absolute value</item>
+        <item>acos: arc cosine</item>
+        <item>asin: arc sine</item>
+        <item>atan: arc tangent</item>
+        <item>cos: cosine</item>
+        <item>sin: sine</item>
+        <item>tan: tangent</item>
+        <item>cosh: hyperbolic cosine</item>
+        <item>sinh: hyperbolic sine</item>
+        <item>tanh: hyperbolic tangent</item>
+        <item>exp: euler\'s number raised to the power (e^x)</item>
+        <item>log: logarithmus naturalis (base e)</item>
+        <item>log10: logarithm (base 10)</item>
+        <item>log2: logarithm (base 2)</item>
+        <item>sqrt: square root</item>
+        <item>cbrt: cubic root</item>
+        <item>signum: signum function</item>
+    </string-array>
 </resources>

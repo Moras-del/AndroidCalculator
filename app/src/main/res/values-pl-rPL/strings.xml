@@ -17,4 +17,25 @@
     <string name="app_id">APP_ID</string>
     <string name="ad_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ad_intersitial_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="functions_help_title">Wbudowane funkcje</string>
+    <string name="ok">OK</string>
+    <string-array name="functions_help">
+        <item>abs: wartość absolutna</item>
+        <item>acos: arcus cosinus</item>
+        <item>asin: arcus sinus</item>
+        <item>atan: arcus tangens</item>
+        <item>cos: cosinus</item>
+        <item>sin: sinus</item>
+        <item>tan: tangens</item>
+        <item>cosh: cosinus hiperboliczny</item>
+        <item>sinh: sinus hiperboliczny</item>
+        <item>tanh: tangens hiperboliczny</item>
+        <item>exp: liczba eulera do potęgi x (e^x)</item>
+        <item>log: logarytm naturalny (e w podstawie)</item>
+        <item>log10: logarytm dziesiętny (10 w podstawie)</item>
+        <item>log2: logarytm dwójkowy (2 w podstawie)</item>
+        <item>sqrt: pierwiastek kwadratowy</item>
+        <item>cbrt: pierwiastek szescienny</item>
+        <item>signum: funkcja signum</item>
+    </string-array>
 </resources>

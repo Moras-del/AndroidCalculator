@@ -4,6 +4,7 @@ package pl.moras.equationmaker
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 
 import net.objecthunter.exp4j.Expression
@@ -14,16 +15,20 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 
 import kotlinx.android.synthetic.main.activity_chart.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
+import java.lang.Exception
 
 
 class ChartActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +36,15 @@ class ChartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chart)
         val function = intent.getStringExtra(getString(R.string.pl_moras_mainactivity_function)).toString()
         val range = intent.getStringExtra(getString(R.string.pl_moras_mainactivity_range)).toInt()
-        var expression: Expression? = null
+        var chartData: LineData? = null
         try {
-            expression = ExpressionBuilder(function)
+            val expression = ExpressionBuilder(function)
                 .variable("x")
                 .build()
-        } catch (e: Exception) {
-            toast(getString(R.string.function_error))
-            this@ChartActivity.onBackPressed()
+            chartData = getChartData(expression, range.toDouble(), function)
+        } catch (e:Exception){
+            longToast(getString(R.string.function_error))
+            onBackPressed()
         }
         with(chartView) {
             axisLeft.textColor = Color.WHITE
@@ -46,15 +52,15 @@ class ChartActivity : AppCompatActivity() {
             xAxis.textColor = Color.WHITE
             legend.textColor=Color.WHITE
             description.isEnabled = false
-            data = getChartData(expression!!, range.toDouble(), function)
+            data = chartData
             marker = MyMarker(
                 this@ChartActivity,
                 R.layout.marker_layout
             )
             setPinchZoom(true)
         }
-    }
 
+    }
     private fun getChartData(expression: Expression, range: Double, function: String): LineData{
         val entryList = mutableListOf<Entry>()
         for (i in -range..range step 0.01){
@@ -74,6 +80,5 @@ class ChartActivity : AppCompatActivity() {
         }
         return sequence.asIterable()
     }
-
 
 }

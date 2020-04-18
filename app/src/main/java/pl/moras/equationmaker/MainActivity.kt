@@ -2,13 +2,12 @@ package pl.moras.equationmaker
 
 import android.content.Context
 import android.os.*
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import com.google.android.gms.ads.*
-import pl.moras.equationmaker.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -44,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         chartButton.onClick {
             val function: String = functionText.text.toString()
             val range: String = rangeText.text.toString()
@@ -59,9 +57,17 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-    }
 
-    //utwórz zmienne do równania
+        functionTextLayout.setEndIconOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setItems(resources.getStringArray(R.array.functions_help)){_,_->}
+                .setTitle(getString(R.string.functions_help_title))
+                .setPositiveButton(getString(R.string.ok)){_,_->}
+                .show()
+
+        }
+    }
+    //make variables for function
     fun getVariables(vars: EditText): Array<String> {
         return vars.text.toString()
             .replace(" ","")
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun validateFunction(function: String, variables: Array<String>): Boolean {
-        if (function == "" || variables[0] == "") { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
+        if (function == "" || variables[0] == "") { //check if all edittexts are valid
             vibrate()
             if (function == "") {
                 functionTextLayout.startAnimation(
@@ -107,9 +113,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validateChart(function: String, range: String): Boolean {
-        if (function == "" || range == "") { //SPRAWDZ CZY WSZYSTKIE POLA WYPELNIONE
+        if (function == "" || range == ""|| !function.contains("x", true)) { //check if all edittexts are valid
             vibrate()
-            if (function == "") {
+            if (function == "" || !function.contains("x", true)) {
                 functionTextLayout?.startAnimation(
                     AnimationUtils.loadAnimation(
                         this@MainActivity,
