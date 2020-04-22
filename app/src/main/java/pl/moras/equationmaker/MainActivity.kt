@@ -2,17 +2,19 @@ package pl.moras.equationmaker
 
 import android.content.Context
 import android.os.*
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import com.google.android.gms.ads.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,11 +36,13 @@ class MainActivity : AppCompatActivity() {
         resultbutton.onClick {
             val function: String = functionText.text.toString()
             val variables = getVariables(varText)
-            if (validateFunction(function, variables)){
+            if (
+                isFunctionValid(function) { errorCallback(functionTextLayout) } &&
+                areVariablesValid(variables) { errorCallback(varLayout) }) {
                 try {
                     val result = compute(function, variables)
                     resultTextView.text = getString(R.string.function_result, result)
-                } catch (e:Exception){
+                } catch (e: Exception) {
                     toast(getString(R.string.function_error))
                 }
             }
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             val function: String = functionText.text.toString()
             val range: String = rangeText.text.toString()
 
-            if(validateChart(function, range)){
+            if (isChartValid(function, range, {errorCallback(functionTextLayout)},{b: Boolean -> rangeErrorCallback(b) })) {
                 if (intersitialAd.isLoaded) {
                     intersitialAd.show()
                 }
@@ -60,21 +64,21 @@ class MainActivity : AppCompatActivity() {
 
         functionTextLayout.setEndIconOnClickListener {
             MaterialAlertDialogBuilder(this)
-                .setItems(resources.getStringArray(R.array.functions_help)){_,_->}
+                .setItems(resources.getStringArray(R.array.functions_help)) { _, _ -> }
                 .setTitle(getString(R.string.functions_help_title))
-                .setPositiveButton(getString(R.string.ok)){_,_->}
+                .setPositiveButton(getString(R.string.ok)) { _, _ -> }
                 .show()
 
         }
     }
+
     //make variables for function
-    fun getVariables(vars: EditText): Array<String> {
-        return vars.text.toString()
-            .replace(" ","")
-            .toLowerCase()
-            .split(",")
-            .toTypedArray()
-    }
+    fun getVariables(vars: EditText): Array<String> = vars.text.toString()
+        .replace(" ", "")
+        .toLowerCase(Locale.getDefault())
+        .split(",")
+        .toTypedArray()
+
 
     fun compute(function: String, variables: Array<String>): Double {
         val e = ExpressionBuilder(function)
@@ -85,55 +89,21 @@ class MainActivity : AppCompatActivity() {
         for (n in variables) {
             expression!!.setVariable(n[0].toString(), n.substring(2).toDouble())
         }
-        return  expression!!.evaluate()
+        return expression!!.evaluate()
     }
 
-
-    private fun validateFunction(function: String, variables: Array<String>): Boolean {
-        if (function == "" || variables[0] == "") { //check if all edittexts are valid
-            vibrate()
-            if (function == "") {
-                functionTextLayout.startAnimation(
-                    AnimationUtils.loadAnimation(
-                        this@MainActivity,
-                        R.anim.shake
-                    )
-                )
-            } else if (variables[0] == "") {
-                varLayout.startAnimation(
-                    AnimationUtils.loadAnimation(
-                        this@MainActivity,
-                        R.anim.shake
-                    )
-                )
-            }
-            return false
-        }
-        return true
+    private val errorCallback: (View)->Unit = {
+        vibrate()
+        animate(it)
     }
 
-    private fun validateChart(function: String, range: String): Boolean {
-        if (function == "" || range == ""|| !function.contains("x", true)) { //check if all edittexts are valid
-            vibrate()
-            if (function == "" || !function.contains("x", true)) {
-                functionTextLayout?.startAnimation(
-                    AnimationUtils.loadAnimation(
-                        this@MainActivity,
-                        R.anim.shake
-                    )
-                )
-            } else if (range == "") {
-                rangeLayout?.startAnimation(
-                    AnimationUtils.loadAnimation(
-                        this@MainActivity,
-                        R.anim.shake
-                    )
-                )
-            }
-            return false
-        }
-        return true
+    private val rangeErrorCallback: (boolean: Boolean) -> (Unit) = {
+        vibrate()
+        animate(rangeLayout)
+        if (it)
+            longToast("max 100")
     }
+
 
     private fun vibrate(){
         val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -144,7 +114,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun adListener() =object: AdListener(){
+    private fun animate(view: View){
+        view.startAnimation(
+            AnimationUtils.loadAnimation(this, R.anim.shake)
+        )
+    }
+
+    private fun adListener():AdListener =object: AdListener(){
         override fun onAdClosed() {
             intersitialAd.loadAd(AdRequest.Builder().build())
         }
